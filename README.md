@@ -1,2 +1,2 @@
 # vaquita-app
-Vaquita es una app móvil para gestionar y dividir gastos entre grupos de forma simple y transparente. Ideal para viajes, eventos o convivencias, permite registrar gastos, calcular deudas y evitar errores o discusiones, reemplazando hojas de cálculo y cuentas manuales.
+Vaquita es una app móvil para crear grupos, registrar gastos y calcular automáticamente cuánto debe cada persona. Permite dividir costos de forma simple y llevar un control claro de deudas entre amigos en viajes, salidas o convivencias.
