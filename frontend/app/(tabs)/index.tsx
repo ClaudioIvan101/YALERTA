@@ -60,7 +60,7 @@ export default function IndexScreen() {
         </View>
       </View>
 
-      <View className="absolute inset-x-0 bottom-0 rounded-t-3xl bg-ya-surface border-t border-ya-surface-high px-4 pt-4 pb-8">
+      <View className="absolute inset-x-0 bottom-24 rounded-t-3xl bg-ya-surface border-t border-ya-surface-high px-4 pt-4 pb-8">
         <View className="flex-row items-center justify-between mb-4">
           <Text className="text-white text-2xl font-bold">Rodeo Activo</Text>
           <View className="rounded-full bg-ya-primary/15 border border-ya-primary/40 px-3 py-1">
