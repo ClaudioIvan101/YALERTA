@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-export default function DashboardScreen() {
+type DashboardScreenProps = {
+  onOpenMapPress: () => void;
+};
+
+export default function DashboardScreen({ onOpenMapPress }: DashboardScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="dark" />
@@ -24,7 +28,7 @@ export default function DashboardScreen() {
         </View>
 
         <View style={styles.bottomAction}>
-          <Pressable style={styles.mapButton}>
+          <Pressable style={styles.mapButton} onPress={onOpenMapPress}>
             <Text style={styles.mapButtonText}>Ver Mapa en Vivo</Text>
           </Pressable>
         </View>
