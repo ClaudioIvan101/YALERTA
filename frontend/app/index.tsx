@@ -1,97 +1,88 @@
-import { Link } from 'expo-router';
-import { Activity, Bell, Map } from 'lucide-react-native';
-import { Pressable, SafeAreaView, Text, View } from 'react-native';
+import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
+import { router } from 'expo-router';
+import { Sensors, Wifi, Pets, GridView, Notifications, Leaderboard, Settings, BatteryLow, Thermometer } from 'lucide-react-native';
 
-export default function DashboardRoute() {
+export default function DashboardSat() {
   return (
-    <SafeAreaView className="flex-1 bg-[#07150F]">
-      <View className="absolute -top-24 -right-20 h-64 w-64 rounded-full bg-emerald-500/15" />
-      <View className="absolute bottom-32 -left-20 h-56 w-56 rounded-full bg-lime-400/10" />
+    <View className="flex-1 bg-ya-surface">
+      
+      {/* Header Premium */}
+      <View className="h-16 border-b border-ya-surface-low px-6 flex-row justify-between items-center mt-8">
+        <View className="flex-row items-center gap-2">
+          <Text className="text-ya-primary font-bold text-2xl tracking-tighter">YAlerta</Text>
+        </View>
+        <Wifi size={20} color="#a6aabf" />
+      </View>
 
-      <View className="flex-1 px-5 pt-4">
-        <View className="mb-6">
-          <View className="mb-3 flex-row items-center gap-2">
-            <View className="rounded-full bg-emerald-400/15 px-3 py-1">
-              <Text className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-200">
-                Monitoreo activo
-              </Text>
-            </View>
-            <Bell size={16} color="#A7F3D0" strokeWidth={2.25} />
-          </View>
-
-          <Text className="text-4xl font-black tracking-tight text-white">
-            Y-Alerta
-          </Text>
-          <Text className="mt-1 text-base font-medium text-slate-300">
-            Resistencia, Chaco
-          </Text>
+      {/* Main Content: Simulación de Mapa con Imagen */}
+      <View className="flex-1 relative">
+        <View className="absolute inset-0 opacity-40 bg-slate-900">
+          {/* Acá después va el componente <MapView /> que hicimos */}
         </View>
 
-        <View className="flex-row gap-3">
-          <View className="flex-1 rounded-3xl border border-emerald-400/15 bg-white/6 p-4">
-            <View className="mb-4 flex-row items-center justify-between">
-              <View className="rounded-2xl bg-emerald-400/15 p-2.5">
-                <Activity size={18} color="#86EFAC" strokeWidth={2.25} />
-              </View>
-              <Text className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200/80">
-                En verde
-              </Text>
-            </View>
-
-            <Text className="text-sm font-medium text-emerald-100/80">
-              Animales en Predio
-            </Text>
-            <Text className="mt-1 text-4xl font-black tracking-tight text-white">
-              0
-            </Text>
-          </View>
-
-          <View className="flex-1 rounded-3xl border border-rose-400/15 bg-white/6 p-4">
-            <View className="mb-4 flex-row items-center justify-between">
-              <View className="rounded-2xl bg-rose-400/15 p-2.5">
-                <Bell size={18} color="#FDA4AF" strokeWidth={2.25} />
-              </View>
-              <Text className="text-xs font-semibold uppercase tracking-[0.24em] text-rose-200/80">
-                Atención
-              </Text>
-            </View>
-
-            <Text className="text-sm font-medium text-rose-100/80">
-              Alertas de Movimiento
-            </Text>
-            <Text className="mt-1 text-4xl font-black tracking-tight text-white">
-              0
-            </Text>
-          </View>
+        {/* Metrics Status Bar (Flotante arriba) */}
+        <View className="absolute top-4 self-center w-[92%] bg-ya-surface-high/60 p-1 rounded-xl flex-row gap-1 border border-white/5">
+          <MetricCard label="TOTAL" value="20" color="text-ya-primary" />
+          <MetricCard label="POTRERO" value="18" color="text-white" />
+          <MetricCard label="FUERA" value="2" color="text-ya-error" />
+          <MetricCard label="BATERÍA" value="1" color="text-ya-tertiary" />
         </View>
 
-        <View className="mt-5 rounded-3xl border border-white/10 bg-white/5 p-5">
-          <View className="flex-row items-center gap-3">
-            <View className="rounded-2xl bg-sky-400/15 p-3">
-              <Map size={20} color="#7DD3FC" strokeWidth={2.25} />
+        {/* Info Card: Toro Negro (Diseño Stitch) */}
+        <View className="absolute top-1/3 left-10 bg-ya-surface-low/95 p-4 rounded-2xl w-64 border border-ya-primary/20 shadow-2xl">
+          <View className="flex-row justify-between items-start mb-3">
+            <View>
+              <Text className="text-white font-bold text-lg">Toro Negro</Text>
+              <Text className="text-ya-text-muted text-[10px]">ID: #TN-9842</Text>
             </View>
-            <View className="flex-1">
-              <Text className="text-base font-semibold text-white">
-                Capa de monitoreo en tiempo real
-              </Text>
-              <Text className="mt-1 text-sm leading-5 text-slate-300">
-                Visualizá el estado del rodeo y los eventos de movimiento en un mapa vivo.
-              </Text>
+            <View className="bg-ya-error/20 px-2 py-1 rounded">
+              <Text className="text-ya-error text-[10px] font-bold">ALERTA</Text>
             </View>
           </View>
+          
+          <View className="flex-row gap-2 mb-4">
+             <View className="flex-1 bg-ya-surface-high p-2 rounded-lg">
+                <Text className="text-[8px] text-ya-text-muted uppercase">Batería</Text>
+                <Text className="text-white font-bold text-sm">87%</Text>
+             </View>
+             <View className="flex-1 bg-ya-surface-high p-2 rounded-lg">
+                <Text className="text-[8px] text-ya-text-muted uppercase">Temp</Text>
+                <Text className="text-ya-tertiary font-bold text-sm">38.6°C</Text>
+             </View>
+          </View>
+
+          <TouchableOpacity 
+            className="bg-ya-primary py-2 rounded-lg items-center"
+            onPress={() => router.push('/map')}
+          >
+            <Text className="text-ya-surface font-bold text-xs uppercase tracking-widest">Localizar Ahora</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
-      <View className="absolute bottom-6 left-5">
-        <Link href="/map" asChild>
-          <Pressable className="flex-row items-center gap-2 rounded-2xl bg-emerald-400 px-5 py-4 shadow-2xl shadow-emerald-400/30 active:opacity-90">
-            <Map size={18} color="#052E16" strokeWidth={2.4} />
-            <Text className="text-base font-extrabold text-emerald-950">
-              Ver Mapa en Vivo
-            </Text>
-          </Pressable>
-        </Link>
+      {/* Bottom Navigation (Optimización ZURDO) */}
+      <View className="h-24 bg-ya-surface/80 border-t border-ya-surface-low flex-row justify-around items-center pb-6">
+        <NavIcon icon={<GridView size={22} color="#4dfd9d" />} label="Dashboard" active />
+        <NavIcon icon={<Pets size={22} color="#a6aabf" />} label="Rodeo" />
+        <NavIcon icon={<Notifications size={22} color="#a6aabf" />} label="Alertas" />
+        <NavIcon icon={<Settings size={22} color="#a6aabf" />} label="Ajustes" />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
+
+// Sub-componentes para limpiar el código
+const MetricCard = ({ label, value, color }: any) => (
+  <View className="flex-1 items-center py-2 bg-ya-surface-low/40 rounded-lg">
+    <Text className="text-[8px] text-ya-text-muted font-bold">{label}</Text>
+    <Text className={`${color} text-lg font-bold`}>{value}</Text>
+  </View>
+);
+
+const NavIcon = ({ icon, label, active = false }: any) => (
+  <TouchableOpacity className={`items-center p-2 rounded-xl ${active ? 'bg-ya-primary/10' : ''}`}>
+    {icon}
+    <Text className={`text-[10px] mt-1 ${active ? 'text-ya-primary' : 'text-ya-text-muted'}`}>{label}</Text>
+  </TouchableOpacity>
+);
