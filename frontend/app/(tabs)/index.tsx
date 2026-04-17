@@ -1,18 +1,11 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView from 'react-native-maps';
 import { Bell, ChevronRight, PawPrint, Wifi } from 'lucide-react-native';
-
-const darkMapStyle = [
-  { elementType: 'geometry', stylers: [{ color: '#0a1120' }] },
-  { elementType: 'labels.text.fill', stylers: [{ color: '#6b728a' }] },
-  { elementType: 'labels.text.stroke', stylers: [{ color: '#0a1120' }] },
-  { featureType: 'administrative', elementType: 'geometry', stylers: [{ color: '#1f293e' }] },
-  { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#121a2c' }] },
-  { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#162038' }] },
-  { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#0e1628' }] },
-  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#030712' }] },
-];
+import { Colors } from '@/src/constants';
+import { darkMapStyle, DEFAULT_REGION } from '@/src/constants';
+import { GlowingDot } from '@/src/components/ui';
 
 export default function IndexScreen() {
   return (
@@ -20,27 +13,27 @@ export default function IndexScreen() {
       <MapView
         style={StyleSheet.absoluteFillObject}
         customMapStyle={darkMapStyle}
-        initialRegion={{
-          latitude: -32.8895,
-          longitude: -68.8458,
-          latitudeDelta: 0.07,
-          longitudeDelta: 0.06,
-        }}
+        initialRegion={DEFAULT_REGION}
       />
 
       <SafeAreaView className="absolute inset-x-0 top-0 px-4 pt-2">
         <View className="flex-row items-center justify-between">
-          <Text className="text-ya-primary text-3xl font-extrabold tracking-tight">YAlerta</Text>
+          <View className="flex-row items-center gap-2">
+            <Text className="text-ya-primary text-3xl font-extrabold tracking-tight">
+              YAlerta
+            </Text>
+            <GlowingDot color={Colors.primary} size={6} active />
+          </View>
           <View className="h-10 w-10 rounded-full bg-ya-surface-low/90 items-center justify-center border border-ya-surface-high">
-            <Wifi size={18} color="#4dfd9d" />
+            <Wifi size={18} color={Colors.primary} />
           </View>
         </View>
 
         <View className="mt-4 rounded-2xl bg-ya-surface-low/85 border border-ya-surface-high px-3 py-3 flex-row items-center justify-between">
-          <StatItem label="Total" value="20" valueClassName="text-ya-primary" />
-          <StatItem label="En Potrero" value="18" valueClassName="text-white" />
-          <StatItem label="Fuera" value="2" valueClassName="text-ya-error" />
-          <StatItem label="Alertas" value="1" valueClassName="text-ya-tertiary" />
+          <StatItem label="Total" value="20" color={Colors.primary} />
+          <StatItem label="En Potrero" value="18" color={Colors.textPrimary} />
+          <StatItem label="Fuera" value="2" color={Colors.error} />
+          <StatItem label="Alertas" value="1" color={Colors.tertiary} />
         </View>
       </SafeAreaView>
 
@@ -51,12 +44,14 @@ export default function IndexScreen() {
               <Text className="text-white text-lg font-bold">Toro Negro</Text>
               <Text className="text-ya-text-muted text-xs mt-1">ID: TN-9842</Text>
             </View>
-            <View className="flex-row items-center gap-1 rounded-full bg-ya-error/20 px-2.5 py-1">
-              <Bell size={12} color="#ff716c" />
+            <View className="flex-row items-center gap-1.5 rounded-full bg-ya-error/20 px-2.5 py-1">
+              <GlowingDot color={Colors.error} size={5} active />
               <Text className="text-ya-error text-[11px] font-semibold">Alerta</Text>
             </View>
           </View>
-          <Text className="text-ya-text-muted text-sm mt-3">Último evento hace 2 min, fuera de perímetro.</Text>
+          <Text className="text-ya-text-muted text-sm mt-3">
+            Último evento hace 2 min, fuera de perímetro.
+          </Text>
         </View>
       </View>
 
@@ -71,26 +66,26 @@ export default function IndexScreen() {
         <View className="rounded-2xl border-l-4 border-l-ya-error bg-ya-surface-low border border-ya-surface-high px-3 py-3 mb-3">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center gap-2">
-              <Bell size={17} color="#ff716c" />
+              <Bell size={17} color={Colors.error} />
               <View>
                 <Text className="text-white font-semibold">Vaquillona #402</Text>
                 <Text className="text-ya-error text-xs mt-0.5">Fuera de Potrero</Text>
               </View>
             </View>
-            <ChevronRight size={18} color="#a6aabf" />
+            <ChevronRight size={18} color={Colors.textSecondary} />
           </View>
         </View>
 
         <View className="rounded-2xl border-l-4 border-l-ya-primary bg-ya-surface-low border border-ya-surface-high px-3 py-3">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center gap-2">
-              <PawPrint size={17} color="#4dfd9d" />
+              <PawPrint size={17} color={Colors.primary} />
               <View>
                 <Text className="text-white font-semibold">Novillo Brangus</Text>
                 <Text className="text-ya-primary text-xs mt-0.5">En Potrero</Text>
               </View>
             </View>
-            <ChevronRight size={18} color="#a6aabf" />
+            <ChevronRight size={18} color={Colors.textSecondary} />
           </View>
         </View>
       </View>
@@ -101,14 +96,16 @@ export default function IndexScreen() {
 type StatItemProps = {
   label: string;
   value: string;
-  valueClassName: string;
+  color: string;
 };
 
-function StatItem({ label, value, valueClassName }: StatItemProps) {
+function StatItem({ label, value, color }: StatItemProps) {
   return (
     <View className="items-center flex-1">
       <Text className="text-ya-text-muted text-[11px]">{label}</Text>
-      <Text className={`font-bold text-lg ${valueClassName}`}>{value}</Text>
+      <Text style={{ color }} className="font-bold text-lg">
+        {value}
+      </Text>
     </View>
   );
 }

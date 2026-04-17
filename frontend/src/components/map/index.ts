@@ -1,0 +1,1 @@
+export { AnimalMarker } from './AnimalMarker';

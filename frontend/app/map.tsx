@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import { router } from 'expo-router';
-import { ChevronLeft } from 'lucide-react-native';
-import { MotiView } from 'moti';
-import { MOCK_CATTLE } from '../src/data/mockCattle';
-import AnimatedActionButton from '../src/components/AnimatedActionButton';
+import { ArrowLeft } from 'lucide-react-native';
+import { Colors, darkMapStyle } from '@/src/constants';
+import { MOCK_CATTLE_MAP } from '@/src/data';
+import { AnimalMarker } from '@/src/components/map';
 
 export default function MapScreen() {
   const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>(null);
@@ -14,6 +14,7 @@ export default function MapScreen() {
     <View className="flex-1">
       <MapView
         className="flex-1"
+        customMapStyle={darkMapStyle}
         initialRegion={{
           latitude: -27.46056,
           longitude: -58.98389,
@@ -21,49 +22,35 @@ export default function MapScreen() {
           longitudeDelta: 0.0421,
         }}
       >
-        {MOCK_CATTLE.map((animal) => (
+        {MOCK_CATTLE_MAP.map((animal) => (
           <Marker
             key={animal.id}
             coordinate={{ latitude: animal.latitude, longitude: animal.longitude }}
             onPress={() => setSelectedMarkerId(animal.id)}
             tracksViewChanges
           >
-            <MotiView
-              from={{
-                scale: 1,
-                opacity: 1,
-              }}
-              animate={{
-                scale:
-                  animal.status === 'warning'
-                    ? [1, 1.15, 1]
-                    : selectedMarkerId === animal.id
-                    ? 1.14
-                    : 1,
-                opacity: animal.status === 'warning' ? [1, 0.45, 1] : 1,
-              }}
-              transition={{
-                type: 'timing',
-                duration: animal.status === 'warning' ? 1300 : 170,
-                loop: animal.status === 'warning',
-              }}
-              className="items-center"
-            >
-              <View
-                className="h-7 w-7 rounded-full border-2 border-white"
-                style={{ backgroundColor: animal.status === 'ok' ? '#16A34A' : '#DC2626' }}
-              />
-              <View className="mt-0.5 h-2 w-2 rotate-45 bg-slate-900" />
-            </MotiView>
+            <AnimalMarker
+              status={animal.status}
+              selected={selectedMarkerId === animal.id}
+            />
 
             <Callout>
-              <View className="min-w-[190px] rounded-xl bg-white p-3">
-                <Text className="text-base font-extrabold text-slate-900">{animal.name}</Text>
-                <Text className="mt-1 text-sm font-medium text-slate-700">
-                  Bateria: {animal.battery}%
+              <View
+                style={{
+                  minWidth: 190,
+                  borderRadius: 12,
+                  backgroundColor: Colors.surfaceLow,
+                  padding: 12,
+                }}
+              >
+                <Text style={{ fontSize: 14, fontWeight: '800', color: Colors.textPrimary }}>
+                  {animal.name}
                 </Text>
-                <Text className="mt-0.5 text-sm text-slate-600">
-                  Ultima actualizacion: {animal.lastUpdate}
+                <Text style={{ marginTop: 4, fontSize: 13, fontWeight: '500', color: Colors.textSecondary }}>
+                  Batería: {animal.battery}%
+                </Text>
+                <Text style={{ marginTop: 2, fontSize: 13, color: Colors.textMuted }}>
+                  Última actualización: {animal.lastUpdate}
                 </Text>
               </View>
             </Callout>
@@ -71,15 +58,19 @@ export default function MapScreen() {
         ))}
       </MapView>
 
-      <View className="absolute right-5 top-12">
-        <AnimatedActionButton
-          label="Back"
-          icon={ChevronLeft}
+      <View className="absolute left-4 top-12">
+        <Pressable
+          className="flex-row items-center gap-2 rounded-xl border border-ya-surface-high bg-ya-surface-low/95 px-4 py-3"
           onPress={() => router.back()}
-          iconColor="#1e293b"
-          contentClassName="bg-white/95 border border-slate-200 px-4 py-3"
-          labelClassName="text-slate-800"
-        />
+        >
+          <ArrowLeft size={16} color={Colors.primary} />
+          <Text
+            style={{ fontFamily: 'Space Grotesk', color: Colors.primary }}
+            className="text-sm font-bold"
+          >
+            Volver
+          </Text>
+        </Pressable>
       </View>
     </View>
   );

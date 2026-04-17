@@ -3,7 +3,6 @@ module.exports = {
     './app/**/*.{js,jsx,ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
-    './index.ts',
   ],
   presets: [require('nativewind/preset')],
   theme: {
@@ -13,6 +12,7 @@ module.exports = {
         'ya-surface': '#090e1c',
         'ya-surface-low': '#0d1323',
         'ya-surface-high': '#181f33',
+        'ya-surface-elevated': '#1e2640',
         'ya-error': '#ff716c',
         'ya-tertiary': '#feb700',
         'ya-text-muted': '#a6aabf',
