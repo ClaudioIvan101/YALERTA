@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { FlatList, Pressable, Text, View } from 'react-native';
+import { FlatList, Pressable, Text, View, DimensionValue } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useLocalSearchParams } from 'expo-router';
 import MapView, { Marker } from 'react-native-maps';
@@ -122,7 +122,7 @@ export default function AnimalDetailScreen() {
                   <View className="h-2 flex-1 overflow-hidden rounded-full bg-ya-surface-low">
                     <View
                       className="h-2 rounded-full bg-ya-primary"
-                      style={{ width: `${animal.battery}%` }}
+                      style={{ width: `${animal.battery}%` as DimensionValue }}
                     />
                   </View>
                   <Text

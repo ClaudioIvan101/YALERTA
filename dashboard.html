@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YAlerta - Dashboard Satelital</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-dim": "#c1c9e3",
+                        "tertiary-container": "#feb700",
+                        "on-tertiary-fixed": "#392700",
+                        "tertiary": "#ffc965",
+                        "on-tertiary-container": "#533a00",
+                        "primary-fixed": "#4dfd9d",
+                        "on-surface-variant": "#a6aabf",
+                        "on-error-container": "#ffa8a3",
+                        "on-tertiary-fixed-variant": "#5f4200",
+                        "outline-variant": "#434759",
+                        "on-secondary-container": "#c8d0ea",
+                        "secondary-fixed-dim": "#c1c9e3",
+                        "surface": "#090e1c",
+                        "inverse-surface": "#faf8ff",
+                        "on-error": "#490006",
+                        "on-background": "#e1e4fa",
+                        "surface-dim": "#090e1c",
+                        "on-secondary-fixed": "#30384d",
+                        "error-dim": "#d7383b",
+                        "on-tertiary": "#5f4200",
+                        "on-primary-fixed-variant": "#006839",
+                        "surface-variant": "#1e253b",
+                        "surface-container-lowest": "#000000",
+                        "tertiary-fixed-dim": "#ecaa00",
+                        "outline": "#707588",
+                        "secondary-container": "#3e465c",
+                        "inverse-primary": "#006e3d",
+                        "secondary": "#cfd7f2",
+                        "tertiary-fixed": "#feb700",
+                        "on-primary-container": "#004625",
+                        "on-primary": "#005d33",
+                        "surface-container-high": "#181f33",
+                        "primary-fixed-dim": "#38ee90",
+                        "tertiary-dim": "#ecaa00",
+                        "surface-container-low": "#0d1323",
+                        "inverse-on-surface": "#505466",
+                        "background": "#090e1c",
+                        "error": "#ff716c",
+                        "primary": "#4dfd9d",
+                        "surface-bright": "#242b43",
+                        "on-surface": "#e1e4fa",
+                        "primary-container": "#12dd81",
+                        "on-primary-fixed": "#004826",
+                        "surface-container-highest": "#1e253b",
+                        "on-secondary": "#434a60",
+                        "primary-dim": "#38ee90",
+                        "surface-container": "#13192b",
+                        "secondary-fixed": "#cfd7f2",
+                        "surface-tint": "#4dfd9d",
+                        "error-container": "#9f0519",
+                        "on-secondary-fixed-variant": "#4c546a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#090e1c] border-b border-[#0d1323] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#4dfd9d]" style="font-variation-settings: 'FILL' 1;">sensors</span>
+<h1 class="font-['Space_Grotesk'] tracking-tight text-2xl font-bold tracking-tighter text-[#4dfd9d]">YAlerta</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#a6aabf]">wifi</span>
+</div>
+</header>
+<!-- Main Canvas: Map View -->
+<main class="relative w-full h-screen pt-16 pb-24 overflow-hidden">
+<!-- Live Map Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale opacity-40 contrast-125" data-alt="Dark satellite view of Chaco Argentina landscape with sparse vegetation and geometric farmland patterns under moonlight" data-location="Chaco, Argentina" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqpTOa_GzSiqHLAEzaW_iELV220nJ9lb8ab-VVFJd6YN_mZa3EZY_1ILiDzHmp0nNWejOuPLIoznN1JFZjzOj3QpGk-2gQQ-_UXPFvRC3tPo6Ni5mqsqGFFFSMoWOnyY3bMsdlx15xZDSHKikjSYjXDVXacY9rFfeL7kYX0ClYbX0pKBhFSs2xTU9BM2KKL0Uco1hY095EqbiuttfjPRiN_orXQYwBi3OEEPgk43fE9U0wnW48F1WTF0Ecv0Ovx9QglxEHVGlYcVHR"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface/80 via-transparent to-surface/90"></div>
+</div>
+<!-- Metrics Status Bar Overlay -->
+<div class="absolute top-20 left-1/2 -translate-x-1/2 z-20 w-[92%] max-w-4xl">
+<div class="bg-surface-container-high/60 backdrop-blur-xl rounded-xl p-1 flex items-center justify-between gap-1 border border-outline-variant/10">
+<div class="flex-1 bg-surface-container-lowest/40 rounded-lg px-4 py-3 flex flex-col items-center">
+<span class="font-headline text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Total</span>
+<span class="font-headline text-xl font-bold text-primary">20</span>
+</div>
+<div class="flex-1 rounded-lg px-4 py-3 flex flex-col items-center">
+<span class="font-headline text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">En Potrero</span>
+<span class="font-headline text-xl font-bold text-secondary">18</span>
+</div>
+<div class="flex-1 rounded-lg px-4 py-3 flex flex-col items-center">
+<span class="font-headline text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Fuera</span>
+<span class="font-headline text-xl font-bold text-error">2</span>
+</div>
+<div class="flex-1 rounded-lg px-4 py-3 flex flex-col items-center">
+<span class="font-headline text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Batería Baja</span>
+<span class="font-headline text-xl font-bold text-tertiary">1</span>
+</div>
+</div>
+</div>
+<!-- Map Markers (Simulated) -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Green Markers -->
+<div class="absolute top-[40%] left-[30%] pointer-events-auto">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-8 h-8 bg-primary/20 rounded-full animate-ping"></div>
+<div class="w-4 h-4 bg-primary border-2 border-surface rounded-full shadow-[0_0_8px_rgba(77,253,157,0.6)]"></div>
+</div>
+</div>
+<div class="absolute top-[55%] left-[60%] pointer-events-auto">
+<div class="w-4 h-4 bg-primary border-2 border-surface rounded-full"></div>
+</div>
+<!-- Red Marker (Outside) -->
+<div class="absolute top-[35%] left-[75%] pointer-events-auto group">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-10 h-10 bg-error/30 rounded-full animate-pulse"></div>
+<div class="w-5 h-5 bg-error border-2 border-surface rounded-full shadow-[0_0_12px_rgba(255,113,108,0.8)]"></div>
+<div class="absolute -top-8 bg-error text-on-error px-2 py-0.5 rounded text-[10px] font-headline font-bold">FUERA</div>
+</div>
+</div>
+<!-- Active Info Card: Toro Negro -->
+<div class="absolute top-[50%] left-[45%] pointer-events-auto">
+<!-- Info Marker -->
+<div class="relative flex items-center justify-center mb-4">
+<div class="w-6 h-6 bg-tertiary border-2 border-surface rounded-full shadow-[0_0_12px_rgba(255,201,101,0.8)]"></div>
+</div>
+<!-- Card Overlay -->
+<div class="bg-surface-bright/90 backdrop-blur-2xl w-64 rounded-xl border border-primary/20 shadow-2xl overflow-hidden -translate-x-1/2">
+<div class="p-4 space-y-3">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline text-lg font-bold text-on-surface">Toro Negro</h3>
+<p class="text-xs text-on-surface-variant font-medium">ID: #TN-9842</p>
+</div>
+<span class="bg-error/20 text-error text-[10px] font-headline font-bold px-2 py-1 rounded">ALERTA</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container-high rounded-lg p-2">
+<span class="text-[9px] uppercase font-headline text-on-surface-variant">Batería</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">battery_3_bar</span>
+<span class="font-headline text-sm font-semibold">87%</span>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-lg p-2">
+<span class="text-[9px] uppercase font-headline text-on-surface-variant">Temp</span>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[14px]">thermometer</span>
+<span class="font-headline text-sm font-semibold">38.6°C</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-2 rounded-lg font-headline text-xs font-bold uppercase tracking-wider active:scale-95 transition-transform">
+                            Ver Historial
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pull-to-refresh Indicator -->
+<div class="absolute top-4 w-full flex justify-center pointer-events-none opacity-40">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-xl animate-bounce">keyboard_double_arrow_down</span>
+<span class="text-[10px] font-headline text-on-surface-variant uppercase tracking-[0.2em]">Sincronizando</span>
+</div>
+</div>
+<!-- Rodeo Activo Bottom Sheet -->
+<div class="absolute bottom-0 w-full z-30 pointer-events-none">
+<div class="bg-surface-container-low/95 backdrop-blur-2xl rounded-t-3xl border-t border-outline-variant/20 pointer-events-auto h-[320px] shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
+<div class="flex justify-center py-3">
+<div class="w-12 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<div class="px-6 pb-6 h-full flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline text-xl font-bold tracking-tight">Rodeo Activo</h2>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-headline font-medium">20 Animales</span>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 pb-20 custom-scrollbar">
+<!-- List Item 1 -->
+<div class="bg-surface-container-high/50 p-4 rounded-xl flex items-center justify-between border-l-4 border-error">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">pets</span>
+</div>
+<div>
+<p class="font-headline font-bold">Vaquillona #402</p>
+<p class="text-xs text-error font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">location_off</span> Fuera de Potrero
+                                    </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- List Item 2 -->
+<div class="bg-surface-container-high/50 p-4 rounded-xl flex items-center justify-between border-l-4 border-primary">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">pets</span>
+</div>
+<div>
+<p class="font-headline font-bold">Novillo Brangus</p>
+<p class="text-xs text-on-surface-variant font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span> En Potrero
+                                    </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- List Item 3 -->
+<div class="bg-surface-container-high/50 p-4 rounded-xl flex items-center justify-between border-l-4 border-tertiary">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">pets</span>
+</div>
+<div>
+<p class="font-headline font-bold">Ternero #21</p>
+<p class="text-xs text-tertiary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">battery_alert</span> Batería Crítica
+                                    </p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pt-3 pb-6 px-2 bg-[#090e1c]/60 backdrop-blur-xl z-50 rounded-t-lg border-t border-[#0d1323] shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center bg-[#4dfd9d]/10 text-[#4dfd9d] rounded-xl px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a6aabf] px-3 py-1 hover:text-white transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">pets</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-medium">Rodeo</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a6aabf] px-3 py-1 hover:text-white transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-medium">Alertas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a6aabf] px-3 py-1 hover:text-white transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-medium">Estadísticas</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a6aabf] px-3 py-1 hover:text-white transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-medium">Configuración</span>
+</a>
+</nav>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(77, 253, 157, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</body></html>

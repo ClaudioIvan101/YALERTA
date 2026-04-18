@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'ya-primary': '#4dfd9d',
+        'ya-surface-lowest': '#000000',
         'ya-surface': '#090e1c',
         'ya-surface-low': '#0d1323',
         'ya-surface-high': '#181f33',
@@ -16,6 +17,7 @@ module.exports = {
         'ya-error': '#ff716c',
         'ya-tertiary': '#feb700',
         'ya-text-muted': '#a6aabf',
+        'ya-outline-variant': '#434759',
       },
       fontFamily: {
         headline: ['Space Grotesk'],

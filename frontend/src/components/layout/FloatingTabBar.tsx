@@ -42,21 +42,23 @@ function FloatingTabButton({ focused, label, onPress, onLongPress, routeName }: 
       className="flex-1 items-center justify-center py-1"
       onLongPress={onLongPress}
       onPress={onPress}
-      onPressIn={() => animateScale(0.94)}
+      onPressIn={() => animateScale(0.90)}
       onPressOut={() => animateScale(1)}
       accessibilityRole="button"
     >
-      <Animated.View style={{ transform: [{ scale }] }} className="items-center gap-1">
-        <View className={`rounded-full px-3 py-2 ${focused ? 'bg-ya-primary/15' : ''}`}>
-          <Icon size={18} color={focused ? Colors.primary : Colors.textSecondary} />
-        </View>
+      <Animated.View 
+        style={{ transform: [{ scale }] }} 
+        className={`items-center justify-center rounded-xl px-3 py-1.5 ${focused ? 'bg-ya-primary/10' : ''}`}
+      >
+        <Icon size={20} color={focused ? Colors.primary : Colors.textSecondary} />
         <Text
           style={{
             color: focused ? Colors.primary : Colors.textSecondary,
             fontFamily: 'Space Grotesk',
             fontSize: 10,
             textTransform: 'uppercase',
-            letterSpacing: 0.7,
+            fontWeight: '500',
+            marginTop: 2,
           }}
         >
           {label}
@@ -95,13 +97,11 @@ export function FloatingTabBar({ state, descriptors, navigation }: BottomTabBarP
         {
           opacity: enterOpacity,
           transform: [{ translateY: enterY }],
-          bottom: Math.max(insets.bottom, 10) + 8,
         },
       ]}
-      pointerEvents="box-none"
     >
-      <BlurView intensity={78} tint="dark" style={styles.pill}>
-        <View className="flex-row items-center justify-between px-2 py-2">
+      <BlurView intensity={40} tint="dark" style={[styles.nav, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+        <View className="flex-row items-center justify-around px-2 pt-3">
           {state.routes.map((route, index) => {
             const descriptor = descriptors[route.key];
             const href = (descriptor.options as { href?: string | null }).href;
@@ -147,14 +147,21 @@ export function FloatingTabBar({ state, descriptors, navigation }: BottomTabBarP
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    left: 14,
-    right: 14,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
-  pill: {
-    borderRadius: 999,
+  nav: {
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: Colors.borderSubtle,
-    backgroundColor: Colors.surfaceTranslucent,
+    borderTopWidth: 1,
+    borderColor: '#0d1323',
+    backgroundColor: 'rgba(9, 14, 28, 0.60)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 24,
+    elevation: 20,
   },
 });

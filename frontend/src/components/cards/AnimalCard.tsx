@@ -37,43 +37,42 @@ export const AnimalCard = memo(function AnimalCard({ item, index = 0 }: AnimalCa
   return (
     <Animated.View style={{ transform: [{ scale }] }}>
       <Pressable
-        className={`mb-3 rounded-2xl border border-ya-surface-high border-l-4 bg-ya-surface-low px-4 py-3 ${statusStyle.borderClass}`}
+        className={`mb-4 rounded-xl border border-ya-outline-variant/20 border-l-4 bg-ya-surface-high/60 shadow-xl ${statusStyle.borderClass} overflow-hidden`}
         onPress={() => router.push({ pathname: '/animal-detail', params: { id: item.id } })}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
       >
-        <View className="flex-row items-center justify-between">
-          <View className="flex-1">
-            <View className="flex-row items-center gap-2">
-              <Text className="text-white text-base font-semibold">{item.name}</Text>
-              <View className={`rounded-full border px-2 py-1 ${statusStyle.badgeClass}`}>
-                <Text
-                  style={{ fontFamily: 'Space Grotesk' }}
-                  className={`text-[10px] font-semibold uppercase ${statusStyle.textClass}`}
-                >
-                  {statusStyle.label}
-                </Text>
+        <View className="px-4 py-3 bg-ya-surface-low/30">
+          <View className="flex-row items-center justify-between">
+            <View className="flex-1">
+              <View className="flex-row items-center gap-2">
+                <Text style={{ fontFamily: 'Space Grotesk' }} className="text-white text-lg font-bold">{item.name}</Text>
+                <View className={`rounded bg-opacity-20 px-2 py-0.5 ${statusStyle.badgeClass}`}>
+                  <Text
+                    style={{ fontFamily: 'Space Grotesk', color: statusStyle.color }}
+                    className="text-[10px] font-bold uppercase"
+                  >
+                    {statusStyle.label}
+                  </Text>
+                </View>
               </View>
+              <Text className="mt-1 text-ya-text-muted text-xs">
+                {item.type} · {item.breed}
+              </Text>
             </View>
-            <Text className="mt-1 text-ya-text-muted text-xs">
-              {item.type} · {item.breed}
-            </Text>
+            <ChevronRight size={20} color={Colors.textSecondary} />
           </View>
-          <ChevronRight size={18} color={Colors.textSecondary} />
         </View>
 
-        <View className="mt-3 rounded-xl border border-ya-surface-high bg-ya-surface px-3 py-2">
-          <View className="flex-row items-center justify-between">
-            <View className="flex-row items-center gap-2">
-              <Radio size={14} color={Colors.textSecondary} />
-              <Text className="text-ya-text-muted text-xs">{item.tagID}</Text>
-            </View>
-            <Text className="text-ya-text-muted text-xs">{item.lastSeen}</Text>
+        <View className="px-4 py-3 flex-row items-center justify-between">
+          <View className="flex-row items-center gap-2">
+            <Radio size={14} color={Colors.textSecondary} />
+            <Text style={{ fontFamily: 'Space Grotesk' }} className="text-ya-text-muted text-xs font-semibold">{item.tagID}</Text>
           </View>
-          <View className="mt-2 flex-row items-center gap-2">
+          <View className="flex-row items-center gap-2">
             <StatusIcon size={14} color={statusStyle.color} />
-            <Text className={`text-xs ${statusStyle.textClass}`}>
-              LoRaWAN {item.lorawanStatus}
+            <Text style={{ fontFamily: 'Space Grotesk' }} className={`text-xs font-medium ${statusStyle.textClass}`}>
+              {item.lastSeen}
             </Text>
           </View>
         </View>
