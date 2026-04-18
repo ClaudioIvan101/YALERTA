@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { FlatList, Pressable, Text, View, DimensionValue } from 'react-native';
+import { Pressable, Text, View, DimensionValue } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useLocalSearchParams } from 'expo-router';
 import MapView, { Marker } from 'react-native-maps';
@@ -33,7 +34,7 @@ export default function AnimalDetailScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-ya-surface" edges={['top']}>
-      <FlatList
+      <FlashList
         data={ALERT_HISTORY}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 140 }}

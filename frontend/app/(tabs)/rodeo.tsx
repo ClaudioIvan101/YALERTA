@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { FlatList, ListRenderItemInfo, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import { FlashList, ListRenderItemInfo } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Search } from 'lucide-react-native';
 import { Colors } from '@/src/constants';
@@ -56,15 +57,10 @@ export default function RodeoScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-ya-surface" edges={['top']}>
-      <FlatList
+      <FlashList
         data={filteredData}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        getItemLayout={getItemLayout}
-        initialNumToRender={7}
-        maxToRenderPerBatch={8}
-        windowSize={7}
-        removeClippedSubviews
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 150 }}
         ListHeaderComponent={
           <View className="mb-5">

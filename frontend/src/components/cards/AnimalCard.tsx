@@ -5,6 +5,7 @@ import { ChevronRight, Radio } from 'lucide-react-native';
 import type { Animal } from '@/src/types';
 import { Colors } from '@/src/constants';
 import { getAnimalStatusStyle } from '@/src/utils';
+import { useAnimatedEntry } from '@/src/hooks/useAnimatedEntry';
 
 type AnimalCardProps = {
   item: Animal;
@@ -15,6 +16,7 @@ export const AnimalCard = memo(function AnimalCard({ item, index = 0 }: AnimalCa
   const statusStyle = getAnimalStatusStyle(item.status);
   const StatusIcon = statusStyle.icon;
   const scale = useRef(new Animated.Value(1)).current;
+  const entryStyle = useAnimatedEntry(index, 60);
 
   const handlePressIn = () => {
     Animated.timing(scale, {
@@ -35,7 +37,7 @@ export const AnimalCard = memo(function AnimalCard({ item, index = 0 }: AnimalCa
   };
 
   return (
-    <Animated.View style={{ transform: [{ scale }] }}>
+    <Animated.View style={[entryStyle, { transform: [...entryStyle.transform, { scale }] }]}>
       <Pressable
         className={`mb-4 rounded-xl border border-ya-outline-variant/20 border-l-4 bg-ya-surface-high/60 shadow-xl ${statusStyle.borderClass} overflow-hidden`}
         onPress={() => router.push({ pathname: '/animal-detail', params: { id: item.id } })}

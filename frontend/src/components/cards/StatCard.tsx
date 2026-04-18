@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react-native';
 import { Colors } from '@/src/constants';
 
 type StatCardProps = {
-  icon: LucideIcon;
+  icon: LucideIcon | React.ComponentType<{ size: number; color: string }>;
   label: string;
   value: number | string;
   suffix?: string;

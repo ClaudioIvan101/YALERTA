@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import {
-  FlatList,
   ListRenderItemInfo,
   Pressable,
   Switch,
   Text,
   TextInput,
   View,
+  ScrollView
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
@@ -151,43 +151,39 @@ export default function GeofenceEditorScreen() {
               </View>
             </View>
 
-            <FlatList
-              data={TOOLS}
-              keyExtractor={(item) => item.id}
-              scrollEnabled={false}
-              contentContainerStyle={{ gap: 8 }}
-              renderItem={({ item }: ListRenderItemInfo<ToolItem>) => {
+            <View className="gap-2">
+              {TOOLS.map((item) => {
                 const active = !!item.active;
                 return (
                   <Pressable
+                    key={item.id}
                     className={`h-12 w-12 items-center justify-center rounded-lg border border-ya-surface-high ${active ? 'bg-ya-primary/15' : 'bg-ya-surface/90'}`}
                   >
                     {iconForTool(item.icon, active)}
                   </Pressable>
                 );
-              }}
-            />
+              })}
+            </View>
           </View>
 
           <View className="flex-1" />
 
           <View className="gap-4">
-            <FlatList
-              data={statsData}
+            <ScrollView
               horizontal
-              keyExtractor={(item) => item.id}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{ gap: 12 }}
-              renderItem={({ item }) => (
-                <View className="rounded-xl border border-ya-surface-high bg-ya-surface/90 px-4 py-3">
+            >
+              {statsData.map((item) => (
+                <View key={item.id} className="rounded-xl border border-ya-surface-high bg-ya-surface/90 px-4 py-3">
                   <Text className="text-[10px] uppercase tracking-widest text-ya-text-muted">{item.label}</Text>
                   <View className="mt-1 flex-row items-end gap-1">
                     <Text className="text-3xl font-headline font-bold text-ya-primary">{item.value}</Text>
                     {item.suffix ? <Text className="text-xs text-ya-text-muted">{item.suffix}</Text> : null}
                   </View>
                 </View>
-              )}
-            />
+              ))}
+            </ScrollView>
 
             <Pressable className="flex-row items-center justify-center gap-2 rounded-md bg-ya-primary py-4" onPress={() => router.back()}>
               <Save size={16} color="#090e1c" />

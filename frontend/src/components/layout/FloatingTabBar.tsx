@@ -1,14 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 import { BlurView } from 'expo-blur';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Bell, ChartNoAxesColumn, LayoutGrid, PawPrint, Settings2 } from 'lucide-react-native';
+import { Bell, ChartNoAxesColumn, LayoutGrid, Settings2 } from 'lucide-react-native';
+import { Image } from 'expo-image';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '@/src/constants';
 
+const CowIcon = ({ size, color }: { size: number; color: string }) => (
+  <Image 
+    source={require('@/assets/images/cow_icon.png')} 
+    style={{ width: size, height: size, tintColor: color }} 
+    contentFit="contain"
+  />
+);
+
 const TAB_ICONS = {
   index: LayoutGrid,
-  rodeo: PawPrint,
+  rodeo: CowIcon,
   alertas: Bell,
   estadisticas: ChartNoAxesColumn,
   configuracion: Settings2,

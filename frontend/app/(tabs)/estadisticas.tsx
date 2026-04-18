@@ -7,7 +7,6 @@ import {
   Battery,
   ChartNoAxesColumn,
   Fence,
-  PawPrint,
   ShieldCheck,
   Wifi,
 } from 'lucide-react-native';
@@ -18,6 +17,15 @@ import { SectionTitle, GlowingDot } from '@/src/components/ui';
 import { DeviceCard } from '@/src/components/cards';
 import { MOCK_GATEWAYS, WEEKLY_ACTIVITY, RODEO_STATS } from '@/src/data';
 import Svg, { Circle } from 'react-native-svg';
+import { Image } from 'expo-image';
+
+const CowIcon = ({ size, color }: { size: number; color: string }) => (
+  <Image 
+    source={require('@/assets/images/cow_icon.png')} 
+    style={{ width: size, height: size, tintColor: color }} 
+    contentFit="contain"
+  />
+);
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -190,7 +198,7 @@ export default function EstadisticasScreen() {
         </View>
 
         <View className="flex-row gap-3 mb-6">
-          <StatCard icon={PawPrint} label="Total" value={RODEO_STATS.totalAnimals} color={Colors.primary} />
+          <StatCard icon={CowIcon} label="Total" value={RODEO_STATS.totalAnimals} color={Colors.primary} />
           <StatCard icon={ShieldCheck} label="En Potrero" value={RODEO_STATS.inPerimeter} color={Colors.primary} />
         </View>
         <View className="flex-row gap-3 mb-6">

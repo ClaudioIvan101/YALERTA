@@ -2,12 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView from 'react-native-maps';
-import { Bell, ChevronRight, PawPrint, Wifi } from 'lucide-react-native';
+import { Bell, ChevronRight, Wifi } from 'lucide-react-native';
+import { Image } from 'expo-image';
 import { Colors } from '@/src/constants';
 import { darkMapStyle, DEFAULT_REGION } from '@/src/constants';
 import { GlowingDot } from '@/src/components/ui';
 
 export default function IndexScreen() {
+  const CowIcon = ({ size, color }: { size: number; color: string }) => (
+    <Image 
+      source={require('@/assets/images/cow_icon.png')} 
+      style={{ width: size, height: size, tintColor: color }} 
+      contentFit="contain"
+    />
+  );
+
   return (
     <View className="flex-1 bg-ya-surface">
       <MapView
@@ -20,7 +29,7 @@ export default function IndexScreen() {
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center gap-3">
             <View className="h-8 w-8 items-center justify-center">
-              <PawPrint size={20} color={Colors.primary} />
+              <CowIcon size={20} color={Colors.primary} />
             </View>
             <Text style={{ fontFamily: 'Space Grotesk' }} className="text-white text-2xl font-bold tracking-tighter">
               YAlerta
@@ -77,7 +86,7 @@ export default function IndexScreen() {
         <View className="rounded-xl border-l-4 border-l-ya-error bg-ya-surface-high/50 p-4 mb-3 flex-row items-center justify-between">
           <View className="flex-row items-center gap-4">
             <View className="h-10 w-10 items-center justify-center rounded-lg bg-[#1e253b]">
-              <PawPrint size={20} color={Colors.textSecondary} />
+              <CowIcon size={20} color={Colors.textSecondary} />
             </View>
             <View>
               <Text style={{ fontFamily: 'Space Grotesk' }} className="text-white font-bold">Vaquillona #402</Text>
@@ -90,7 +99,7 @@ export default function IndexScreen() {
         <View className="rounded-xl border-l-4 border-l-ya-primary bg-ya-surface-high/50 p-4 flex-row items-center justify-between">
           <View className="flex-row items-center gap-4">
             <View className="h-10 w-10 items-center justify-center rounded-lg bg-[#1e253b]">
-              <PawPrint size={20} color={Colors.textSecondary} />
+              <CowIcon size={20} color={Colors.textSecondary} />
             </View>
             <View>
               <Text style={{ fontFamily: 'Space Grotesk' }} className="text-white font-bold">Novillo Brangus</Text>
