@@ -12,6 +12,7 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: '#090e1c' },
         }}
       >
+        <Stack.Screen name="index" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="map" />
       </Stack>

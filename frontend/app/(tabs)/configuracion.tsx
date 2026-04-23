@@ -151,10 +151,22 @@ export default function ConfiguracionScreen() {
             </View>
             <Text className="text-ya-text-muted text-sm">React Native</Text>
           </View>
-          <Pressable className="flex-row items-center justify-between py-4">
+          <Pressable className="flex-row items-center justify-between py-4 border-b border-ya-surface-high">
             <View className="flex-row items-center gap-3">
               <Radio size={16} color={Colors.textSecondary} />
               <Text className="text-white text-sm">Soporte Técnico</Text>
+            </View>
+            <ChevronRight size={16} color={Colors.textSecondary} />
+          </Pressable>
+          <Pressable 
+            className="flex-row items-center justify-between py-4"
+            onPress={() => router.replace('/')}
+          >
+            <View className="flex-row items-center gap-3">
+              <View className="h-8 w-8 rounded-full bg-red-500/10 items-center justify-center">
+                <BellOff size={14} color="#ff716c" />
+              </View>
+              <Text className="text-[#ff716c] font-bold text-sm">Cerrar Sesión</Text>
             </View>
             <ChevronRight size={16} color={Colors.textSecondary} />
           </Pressable>

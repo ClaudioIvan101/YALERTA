@@ -80,62 +80,65 @@ export default function AnimalDetailScreen() {
             </View>
 
             <View className="mb-5 gap-3">
-              <View className="rounded-xl bg-ya-surface-high p-4">
-                <View className="mb-3 flex-row items-center justify-between">
-                  <Text className="text-ya-text-muted text-[10px] uppercase tracking-widest">
+              <View className="rounded-[20px] bg-[#1a2133]/90 border border-ya-outline-variant/30 p-5 shadow-2xl">
+                <View className="mb-4 flex-row items-center justify-between">
+                  <Text className="text-ya-text-muted text-[11px] font-bold uppercase tracking-widest">
                     Temperatura Corporal
                   </Text>
                   <StatusBadge severity="success" label="Estable" />
                 </View>
                 <View className="flex-row items-end gap-2">
-                  <Thermometer size={16} color={Colors.primary} />
+                  <Thermometer size={20} color={Colors.primary} />
                   <Text
                     style={{ fontFamily: 'Space Grotesk', color: Colors.textPrimary }}
-                    className="text-5xl font-bold"
+                    className="text-5xl font-bold tracking-tighter"
                   >
                     {animal.temp}
                   </Text>
-                  <Text className="text-ya-text-muted text-xl">°C</Text>
+                  <Text className="text-ya-text-muted text-xl font-medium mb-1">°C</Text>
                 </View>
               </View>
 
-              <View className="rounded-xl bg-ya-surface-high p-4">
-                <Text className="text-ya-text-muted text-[10px] uppercase tracking-widest">
+              <View className="rounded-[20px] bg-[#1a2133]/90 border border-ya-outline-variant/30 p-5 shadow-2xl">
+                <Text className="text-ya-text-muted text-[11px] font-bold uppercase tracking-widest mb-4">
                   Puntaje de Actividad
                 </Text>
-                <View className="mt-3 flex-row items-end gap-2">
-                  <Activity size={16} color={Colors.primary} />
+                <View className="flex-row items-end gap-2">
+                  <Activity size={20} color={Colors.primary} />
                   <Text
                     style={{ fontFamily: 'Space Grotesk', color: Colors.textPrimary }}
-                    className="text-5xl font-bold"
+                    className="text-5xl font-bold tracking-tighter"
                   >
                     {animal.activity}
                   </Text>
-                  <Text className="text-ya-text-muted text-xl">/100</Text>
+                  <Text className="text-ya-text-muted text-xl font-medium mb-1">/100</Text>
                 </View>
               </View>
 
-              <View className="rounded-xl border-l-2 border-l-ya-primary bg-ya-surface-high p-4">
-                <Text className="text-ya-text-muted text-[10px] uppercase tracking-widest">
-                  Batería del Tag
-                </Text>
-                <View className="mt-3 flex-row items-center gap-3">
-                  <View className="h-2 flex-1 overflow-hidden rounded-full bg-ya-surface-low">
-                    <View
-                      className="h-2 rounded-full bg-ya-primary"
-                      style={{ width: `${animal.battery}%` as DimensionValue }}
-                    />
+              <View className="rounded-[20px] border border-ya-outline-variant/30 bg-[#1a2133]/90 shadow-2xl overflow-hidden">
+                <View className="absolute top-0 bottom-0 left-0 w-1.5" style={{ backgroundColor: Colors.primary }} />
+                <View className="p-5 pl-6">
+                  <Text className="text-ya-text-muted text-[11px] font-bold uppercase tracking-widest">
+                    Batería del Tag
+                  </Text>
+                  <View className="mt-4 flex-row items-center gap-4">
+                    <View className="h-2.5 flex-1 overflow-hidden rounded-full bg-ya-surface-low/80 border border-ya-outline-variant/20">
+                      <View
+                        className="h-full rounded-full bg-ya-primary"
+                        style={{ width: `${animal.battery}%` as DimensionValue }}
+                      />
+                    </View>
+                    <Text
+                      style={{ fontFamily: 'Space Grotesk', color: Colors.primary }}
+                      className="text-3xl font-bold tracking-tighter"
+                    >
+                      {animal.battery}%
+                    </Text>
                   </View>
-                  <Text
-                    style={{ fontFamily: 'Space Grotesk', color: Colors.primary }}
-                    className="text-2xl font-bold"
-                  >
-                    {animal.battery}%
+                  <Text className="mt-3 text-[10px] uppercase font-semibold tracking-widest text-ya-text-muted">
+                    Última carga: hace 12d
                   </Text>
                 </View>
-                <Text className="mt-2 text-[10px] uppercase text-ya-text-muted">
-                  Última carga: hace 12d
-                </Text>
               </View>
             </View>
 
@@ -196,10 +199,10 @@ export default function AnimalDetailScreen() {
               </View>
             </View>
 
-            <View className="mb-3 rounded-xl border border-ya-surface-high bg-ya-surface-low p-4">
+            <View className="mb-3 rounded-[16px] border border-ya-outline-variant/30 bg-[#1a2133]/90 shadow-xl p-5">
               <Text
                 style={{ fontFamily: 'Space Grotesk' }}
-                className="text-white text-2xl font-bold"
+                className="text-white text-2xl font-bold tracking-tight"
               >
                 Registro de Alertas
               </Text>
